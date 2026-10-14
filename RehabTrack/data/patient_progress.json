@@ -1,0 +1,21 @@
+{
+  "days": {
+    "2026-10-14": {
+      "knee_extension": {
+        "completed_sets": 1,
+        "reps_in_set": 8
+      },
+      "squat": {
+        "completed_sets": 1,
+        "reps_in_set": 3
+      }
+    }
+  },
+  "processed_sessions": {
+    "2026-10-14": [
+      "knee_extension_2026-10-14_02-04-20.csv",
+      "knee_extension_2026-10-14_14-02-36.csv",
+      "squat_2026-10-14_14-18-35.csv"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "patient": "Demo Patient",
+  "exercises": [
+    {
+      "id": "knee_extension",
+      "name": "Knee Extension",
+      "sets": 3,
+      "reps_per_set": 10,
+      "instructions": "Sit with your thigh supported. Extend the lower leg in a controlled movement, then return slowly.",
+      "rest_seconds": 30
+    },
+    {
+      "id": "squat",
+      "name": "Squat",
+      "sets": 3,
+      "reps_per_set": 10,
+      "instructions": "Perform a controlled squat and return to standing. Follow the movement range prescribed for you.",
+      "rest_seconds": 30
+    }
+  ]
+}

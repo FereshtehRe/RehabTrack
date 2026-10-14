@@ -1,0 +1,20 @@
+{
+  "file": "knee_extension_2026-10-14_00-15-44.csv",
+  "path": "/Users/nadim/Downloads/RehabTrack/data/raw/rehab001/knee_extension_2026-10-14_00-15-44.csv",
+  "status": "good",
+  "issues": [],
+  "warnings": [],
+  "metrics": {
+    "samples": 671,
+    "invalid_time_samples": 0,
+    "duration_seconds": 26.79,
+    "sample_rate_hz": 25.0,
+    "median_interval_ms": 40.0,
+    "large_time_gaps": 0,
+    "calibration_available": true,
+    "invalid_gyro_samples": 0,
+    "peak_absolute_gyro_dps": 465.5,
+    "estimated_missing_packets": 0,
+    "usable_movement_seconds": 21.79
+  }
+}
