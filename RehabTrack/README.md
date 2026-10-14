@@ -1,4 +1,3 @@
-cat > README.md <<'EOF'
 # RehabTrack
 
 RehabTrack is a wearable rehabilitation monitoring prototype developed for movement analysis during rehabilitation exercises.
