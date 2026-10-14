@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RehabTrack</title>
+
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+
+<div class="page">
+
+    <header>
+        <div>
+            <h1>RehabTrack</h1>
+            <p>Rehabilitation movement monitoring</p>
+        </div>
+
+        <div class="header-status">
+            <div class="status">
+                <span class="status-dot"></span>
+                Sensor disconnected
+            </div>
+
+            <div id="liveDataStatus" class="filename">
+                Live data: stopped
+            </div>
+        </div>
+    </header>
+
+
+    
+    <section id="patientOverview" class="patient-overview">
+        <div>
+            <span class="label">PATIENT</span>
+            <h2 id="patientName">Loading patient...</h2>
+            <div id="todayDate" class="today-date"></div>
+        </div>
+
+        <div class="program-summary">
+            <div>
+                <span>Exercises completed</span>
+                <strong id="completedExercises">0 / 0</strong>
+            </div>
+
+            <div>
+                <span>Remaining</span>
+                <strong id="remainingExercises">--</strong>
+            </div>
+        </div>
+
+        
+        <div class="overall-progress">
+            <div class="overall-progress-header">
+                <span>Today's progress</span>
+                <strong id="overallProgressPercent">0%</strong>
+            </div>
+
+            <div class="progress-track">
+                <div id="overallProgressBar"
+                     class="progress-fill"
+                     style="width:0%;">
+                </div>
+            </div>
+        </div>
+
+        <div id="nextAction"
+             class="next-action">
+            Loading next step...
+        </div>
+
+<div id="programMessage" class="program-message">
+            Loading rehabilitation plan...
+        </div>
+    </section>
+
+<!-- PATIENT EXERCISES -->
+    <section class="panel">
+        <div class="panel-title">
+            <div>
+                <span class="label">MY EXERCISES</span>
+                <h3>Today's rehabilitation</h3>
+            </div>
+        </div>
+
+        <div class="exercise-grid" id="exerciseGrid">
+            Loading exercises...
+        </div>
+    </section>
+
+
+    <!-- CURRENT / SELECTED EXERCISE -->
+    <section class="session-header">
+
+        <div>
+            <span class="label">CURRENT EXERCISE</span>
+
+            <h2 id="currentExerciseName">
+                Select an exercise
+            </h2>
+
+            <div id="currentExerciseContext"
+                 class="current-exercise-progress">
+                Choose an exercise above to begin.
+            </div>
+
+            <div class="exercise-controls">
+
+                <button id="pauseStopButton"
+                        style="display:none;">
+                    Pause
+                </button>
+
+                <button id="resumeExerciseButton"
+                        style="display:none;">
+                    Resume exercise
+                </button>
+
+            </div>
+        </div>
+
+        <div class="session-file-info">
+            <div id="filename" class="filename">
+                No session loaded
+            </div>
+
+            <div id="lastUpdated" class="filename">
+                Last updated: --
+            </div>
+        </div>
+
+    </section>
+
+
+
+    <section id="liveSetProgress"
+             class="panel live-set-panel"
+             style="display:none;">
+
+        <div class="panel-title">
+            <div>
+                <span class="label">LIVE EXERCISE</span>
+                <h3 id="liveSetExercise">Exercise</h3>
+            </div>
+
+            <span id="liveRecordingBadge"
+                  class="live-recording-badge">
+                ● Recording
+            </span>
+        </div>
+
+        <div class="live-set-content">
+
+            <div class="live-set-number">
+                <span>CURRENT SET</span>
+
+                <div>
+                    <strong id="liveSetReps">0 / 10</strong>
+                </div>
+            </div>
+
+            <div class="live-set-progress-wrap">
+
+                <div class="progress-track live-track">
+                    <div id="liveSetProgressBar"
+                         class="progress-fill"
+                         style="width:0%;">
+                    </div>
+                </div>
+
+                <div id="liveSetMessage"
+                     class="live-set-message">
+                    Waiting for repetitions...
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    
+    <section id="calibrationPanel"
+             class="panel calibration-panel"
+             style="display:none;">
+
+        <div class="calibration-content">
+
+            <div>
+                <span class="label">SENSOR CALIBRATION</span>
+
+                <h3 id="calibrationTitle">
+                    Keep your leg still
+                </h3>
+
+                <p id="calibrationMessage">
+                    RehabTrack is preparing the sensor.
+                </p>
+            </div>
+
+            <div id="calibrationCountdown"
+                 class="calibration-countdown">
+                5
+            </div>
+
+        </div>
+
+        <div class="progress-track calibration-track">
+            <div id="calibrationProgress"
+                 class="progress-fill"
+                 style="width:0%;">
+            </div>
+        </div>
+
+    </section>
+
+
+<!-- METRICS -->
+    <section class="metrics">
+
+        <div class="card">
+            <span>Repetitions</span>
+            <strong id="repetitions">--</strong>
+            <small>reps</small>
+        </div>
+
+        <div class="card">
+            <span>Average ROM</span>
+            <strong id="rom">--</strong>
+            <small>degrees</small>
+        </div>
+
+        <div class="card">
+            <span>Movement Speed</span>
+            <strong id="speed">--</strong>
+            <small>°/s</small>
+        </div>
+
+        <div class="card">
+            <span>Cadence</span>
+            <strong id="cadence">--</strong>
+            <small>reps/min</small>
+        </div>
+
+    </section>
+
+
+    <!-- MOVEMENT GRAPH -->
+    <section class="panel">
+
+        <div class="panel-title">
+            <div>
+                <span class="label">MOVEMENT</span>
+                <h3>Relative sensor rotation</h3>
+            </div>
+
+            <span class="axis" id="axis"></span>
+        </div>
+
+        <canvas id="angleChart"></canvas>
+
+    </section>
+
+
+    <!-- REP TABLE -->
+    <section class="panel">
+
+        <div class="panel-title">
+            <div>
+                <span class="label">SESSION DETAILS</span>
+                <h3>Repetition analysis</h3>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rep</th>
+                        <th>ROM</th>
+                        <th>Peak speed</th>
+                    </tr>
+                </thead>
+
+                <tbody id="repTable"></tbody>
+            </table>
+        </div>
+
+    </section>
+
+
+    <!-- SESSION RESULT -->
+    <section id="exerciseResult"
+             class="panel exercise-result"
+             style="display:none;">
+
+        <div class="panel-title">
+            <div>
+                <span class="label">SESSION COMPLETE</span>
+                <h3 id="resultExerciseName">
+                    Exercise completed
+                </h3>
+            </div>
+        </div>
+
+        <div class="result-summary">
+
+            <div>
+                <span>Set</span>
+                <strong id="resultSet">--</strong>
+            </div>
+
+            <div>
+                <span>Progress</span>
+                <strong id="resultReps">--</strong>
+            </div>
+
+            <div>
+                <span>Remaining</span>
+                <strong id="resultRemaining">--</strong>
+            </div>
+
+        </div>
+
+        <p id="resultMessage"></p>
+
+    </section>
+
+
+    
+    <section class="panel">
+        <div class="panel-title">
+            <div>
+                <span class="label">REHABILITATION PROGRESS</span>
+                <h3>Daily progress</h3>
+            </div>
+        </div>
+
+        <div id="dailyProgressHistory">
+            Loading progress history...
+        </div>
+    </section>
+
+
+    <section id="restPanel"
+             class="panel rest-panel"
+             style="display:none;">
+
+        <div class="panel-title">
+            <div>
+                <span class="label">REST</span>
+                <h3 id="restTitle">Set complete</h3>
+            </div>
+
+            <div id="restCountdown"
+                 class="rest-countdown">
+                30
+            </div>
+        </div>
+
+        <p id="restMessage">
+            Take a short rest before continuing.
+        </p>
+
+        <div class="progress-track">
+            <div id="restProgressBar"
+                 class="progress-fill"
+                 style="width:0%;">
+            </div>
+        </div>
+
+    </section>
+
+
+<section id="dayStatusSection" class="panel day-status-section">
+
+    <div class="day-status-header">
+
+        <div>
+            <span class="label">REHABILITATION HISTORY</span>
+            <h2>Daily status</h2>
+            <p class="day-status-subtitle">
+                View rehabilitation progress from different days.
+            </p>
+        </div>
+
+        <div class="day-picker">
+
+            <button id="previousDayButton"
+                    class="day-arrow-button"
+                    type="button"
+                    aria-label="Previous day">
+                ←
+            </button>
+
+            <select id="dayStatusSelect"
+                    class="day-status-select">
+            </select>
+
+            <button id="nextDayButton"
+                    class="day-arrow-button"
+                    type="button"
+                    aria-label="Next day">
+                →
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="selected-day-summary">
+
+        <div>
+            <span class="selected-day-label">
+                SELECTED DAY
+            </span>
+
+            <h3 id="selectedDayTitle">
+                Loading...
+            </h3>
+
+            <span id="selectedDayBadge"
+                  class="day-status-badge">
+                Loading
+            </span>
+        </div>
+
+
+        <div class="selected-day-stat">
+
+            <span>Exercises completed</span>
+
+            <strong id="selectedDayCompleted">
+                0 / 0
+            </strong>
+
+        </div>
+
+
+        <div class="selected-day-stat">
+
+            <span>Overall progress</span>
+
+            <strong id="selectedDayPercent">
+                0%
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="selected-day-progress">
+
+        <div class="progress-track">
+
+            <div id="selectedDayProgressBar"
+                 class="progress-fill"
+                 style="width:0%;">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div id="selectedDayExercises"
+         class="selected-day-exercises">
+
+        <p>Loading daily progress...</p>
+
+    </div>
+
+</section>
+
+
+<!-- HISTORY -->
+    <section class="panel">
+
+        <div class="panel-title">
+            <div>
+                <span class="label">SESSION HISTORY</span>
+                <h3>Previous sessions</h3>
+            </div>
+        </div>
+
+        <div id="sessionList">
+            Loading sessions...
+        </div>
+
+    </section>
+
+
+    <footer>
+        RehabTrack prototype · Relative lower-leg/sensor movement
+    </footer>
+
+</div>
+
+<script src="/app.js"></script>
+
+</body>
+</html>

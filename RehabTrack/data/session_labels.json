@@ -1,0 +1,10 @@
+{
+  "knee_extension_2026-10-14_00-15-44.csv": {
+    "exercise": "knee_extension",
+    "expected_reps": 10
+  },
+  "squat_2026-10-13_23-59-40.csv": {
+    "exercise": "squat",
+    "expected_reps": 10
+  }
+}

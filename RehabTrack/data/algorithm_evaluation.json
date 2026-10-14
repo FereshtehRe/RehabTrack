@@ -1,0 +1,41 @@
+{
+  "overall": {
+    "sessions": 2,
+    "mean_absolute_error": 8,
+    "mean_signed_error": -8,
+    "exact_accuracy_percent": 0.0,
+    "within_one_rep_percent": 0.0
+  },
+  "knee_extension": {
+    "sessions": 1,
+    "mean_absolute_error": 8,
+    "mean_signed_error": -8,
+    "exact_accuracy_percent": 0.0,
+    "within_one_rep_percent": 0.0
+  },
+  "squat": {
+    "sessions": 1,
+    "mean_absolute_error": 8,
+    "mean_signed_error": -8,
+    "exact_accuracy_percent": 0.0,
+    "within_one_rep_percent": 0.0
+  },
+  "sessions": [
+    {
+      "file": "knee_extension_2026-10-14_00-15-44.csv",
+      "exercise": "knee_extension",
+      "expected_reps": 10,
+      "detected_reps": 2,
+      "signed_error": -8,
+      "absolute_error": 8
+    },
+    {
+      "file": "squat_2026-10-13_23-59-40.csv",
+      "exercise": "squat",
+      "expected_reps": 10,
+      "detected_reps": 2,
+      "signed_error": -8,
+      "absolute_error": 8
+    }
+  ]
+}
