@@ -25,3 +25,10 @@ data/processed/*
 !data/processed/.gitkeep
 models/*
 !models/.gitkeep
+
+# RehabTrack runtime files
+data/logger_status.json
+
+# Backup files
+*.bak
+*.before_*
