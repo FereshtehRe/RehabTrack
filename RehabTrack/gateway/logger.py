@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""BLE CSV logger for CatSense V0."""
+"""BLE CSV logger for RehabTrack."""
 
 from __future__ import annotations
 import json
@@ -21,7 +21,7 @@ from bleak.backends.scanner import AdvertisementData
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 STATUS_FILE = BASE_DIR / "data" / "logger_status.json"
-DEVICE_NAME = "CatSense-V0"
+DEVICE_NAME = "RehabTrack"
 SERVICE_UUID = "6E400001-B5A3-F393-E0A9-E50E24DCCA9E"
 RX_UUID = "6E400002-B5A3-F393-E0A9-E50E24DCCA9E"
 TX_UUID = "6E400003-B5A3-F393-E0A9-E50E24DCCA9E"
@@ -68,7 +68,7 @@ def write_status(connected=False, recording=False):
         )
 
 def parse_args(argv: Iterable[str]) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Log CatSense V0 BLE IMU data to CSV.")
+    parser = argparse.ArgumentParser(description="Log RehabTrack BLE IMU data to CSV.")
     parser.add_argument("--label", required=True, help="Behavior label, for example sleep/eat/groom/active.")
     parser.add_argument("--cat", required=True, dest="cat_id", help="Cat id, for example cat001.")
     parser.add_argument("--rate", required=True, type=int, choices=VALID_RATES, help="Sampling rate in Hz.")
