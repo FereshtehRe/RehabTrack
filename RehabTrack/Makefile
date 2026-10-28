@@ -23,18 +23,18 @@ clean: ; find . -name __pycache__ -type d -prune -exec rm -rf {} +; find . -name
 
 check:
 	$(GATEWAY_PY) -m py_compile gateway/app.py gateway/progress_api.py
-	$(GATEWAY_PY) gateway/smoke_test.py
+	$(GATEWAY_PY) tests/smoke_test.py
 
 quality:
-	$(GATEWAY_PY) gateway/session_quality.py
+	$(GATEWAY_PY) evaluation/session_quality.py
 
 label:
 	@test -n "$(FILE)" || (echo "Usage: make label FILE=session.csv REPS=10"; exit 1)
 	@test -n "$(REPS)" || (echo "Usage: make label FILE=session.csv REPS=10"; exit 1)
-	$(GATEWAY_PY) gateway/label_session.py "$(FILE)" "$(REPS)"
+	$(GATEWAY_PY) evaluation/label_session.py "$(FILE)" "$(REPS)"
 
 evaluate:
-	$(GATEWAY_PY) gateway/evaluate_algorithm.py
+	$(GATEWAY_PY) evaluation/evaluate_algorithm.py
 
 sessions:
 	@echo ""
@@ -46,7 +46,7 @@ sessions:
 label-latest:
 	@test -n "$(EXERCISE)" || (echo "Usage: make label-latest EXERCISE=knee_extension REPS=10"; exit 1)
 	@test -n "$(REPS)" || (echo "Usage: make label-latest EXERCISE=knee_extension REPS=10"; exit 1)
-	$(GATEWAY_PY) gateway/label_latest.py "$(EXERCISE)" "$(REPS)"
+	$(GATEWAY_PY) evaluation/label_latest.py "$(EXERCISE)" "$(REPS)"
 
 
 .PHONY: mobile
