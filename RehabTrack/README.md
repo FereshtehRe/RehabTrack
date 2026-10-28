@@ -172,3 +172,4 @@ Current limitations include:
 - Relative sensor ROM is not equivalent to an anatomical knee joint angle.
 
 Future work should include validation with more users, different movement speeds and additional rehabilitation exercises.
+
