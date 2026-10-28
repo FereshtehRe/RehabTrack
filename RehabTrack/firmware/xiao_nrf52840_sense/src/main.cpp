@@ -13,7 +13,7 @@ using namespace Adafruit_LittleFS_Namespace;
 
 namespace {
 
-constexpr const char *DEVICE_NAME = "CatSense-V0";
+constexpr const char *DEVICE_NAME = "RehabTrack";
 constexpr const char *CACHE_PATH = "/daily.csv";
 constexpr const char *MODE_PATH = "/mode.txt";
 constexpr uint8_t DEFAULT_RATE_HZ = 25;
@@ -860,7 +860,7 @@ void initBleOrHalt() {
 void setup() {
   Serial.begin(115200);
   waitForSerialWindow();
-  Serial.println("CatSense V0 boot");
+  Serial.println("RehabTrack boot");
 
   initImuOrHalt();
   initBatteryMonitor();
